@@ -1,0 +1,11 @@
+{% load static %}
+<br>
+<nav class="navbar navbar-expand-lg bg-blue" style="background-color: #e3f2fd; height:70px;">
+  <div class="container">
+    <div class="row">
+      <h1 align="center" style="color:#99ccff; position:absolute; left:40%; top:15px; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">{{user.first_name}}  {{user.last_name}} </h1>
+
+    <a href="{% url 'face:logout' %}" class="btn btn-danger" style="margin-left:1100px; position:absolute; top:15px;">Logout</a>
+  </div>
+</div>
+</nav>

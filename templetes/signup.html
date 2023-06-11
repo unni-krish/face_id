@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Registration</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+{% comment %} <script>
+  // JavaScript code for taking a photo
+  // Get the take photo button, photo input element, and preview element
+  const takePhotoBtn = document.getElementById('take-photo-btn');
+  const photoInput = document.getElementById('photo-input');
+  const preview = document.getElementById('photo-preview');
+
+  // Attach a click event listener to the take photo button
+  takePhotoBtn.addEventListener('click', () => {
+    // Request access to the user's webcam
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        const video = document.createElement('video');
+
+        // Set the video stream as the source for the video element
+        video.srcObject = stream;
+        video.play();
+
+        // Create a canvas element to capture the video frame
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        // Capture a frame from the video stream
+        video.addEventListener('loadedmetadata', () => {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+
+          // Draw the current frame from the video on the canvas
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          // Stop the video stream
+          stream.getTracks().forEach((track) => {
+            track.stop();
+          });
+
+          // Convert the canvas image to a data URL
+          const dataURL = canvas.toDataURL();
+
+          // Set the data URL as the background image of the preview element
+          preview.style.backgroundImage = `url(${dataURL})`;
+
+          // Set the data URL as the value of the photo input
+          photoInput.value = dataURL;
+        });
+      })
+      .catch((error) => {
+        console.error('Error accessing webcam:', error);
+      });
+  });
+</script> {% endcomment %}
+
+
+</head>
+<body>
+
+<div class="container">
+
+
+    <form class="well form-horizontal" action="" method="POST"  id="contact_form" enctype="multipart/form-data">
+      {% csrf_token %}
+<fieldset>
+
+<!-- Form Name -->
+<legend><center><h2><b>Registration Form</b></h2></center></legend><br>
+
+<!-- Text input-->
+ {% for msg in messages %}
+    <p style="color:red;" class="font-weight-bolder"><b>{{msg}}</b></p>
+    {% endfor %}
+<div class="form-group">
+  <label class="col-md-4 control-label">First Name</label>
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Last Name</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="last_name" placeholder="Last Name" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!--  <div class="form-group">-->
+<!--  <label class="col-md-4 control-label">Department / Office</label>-->
+<!--    <div class="col-md-4 selectContainer">-->
+<!--    <div class="input-group">-->
+<!--        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>-->
+<!--    <select name="department" class="form-control selectpicker">-->
+<!--      <option value="">Select your Department/Office</option>-->
+<!--      <option>Department of Engineering</option>-->
+<!--      <option>Department of Agriculture</option>-->
+<!--      <option >Accounting Office</option>-->
+<!--      <option >Tresurer's Office</option>-->
+<!--      <option >MPDC</option>-->
+<!--      <option >MCTC</option>-->
+<!--      <option >MCR</option>-->
+<!--      <option >Mayor's Office</option>-->
+<!--      <option >Tourism Office</option>-->
+<!--    </select>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!-- Text input-->
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Username</label>
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input  name="username" placeholder="Username" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!--userphoto-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Photo</label>
+  <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+      <input name="userphoto" id="photo-input" class="form-control" type="file" accept="image/*">
+      {% comment %} <button type="button" id="take-photo-btn" class="btn btn-primary">Take Photo</button> {% endcomment %}
+    </div>
+  </div>
+</div>
+
+<!--cv-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Resume</label>
+  <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+      <input name="cv" class="form-control" type="file">
+    </div>
+  </div>
+</div>
+
+    <!--Address-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Address</label>
+        <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
+            <textarea name="address" placeholder="Address" class="form-control"  type="text"></textarea>
+      {% comment %} <input name="email" placeholder="E-Mail Address" class="form-control"  type="text"> {% endcomment %}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Text input-->
+
+        <!--Education-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Education</label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+          <input name="education" placeholder="Education" class="form-control"  type="text">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Text input-->
+
+            <!--Phone-->
+       <div class="form-group">
+        <label class="col-md-4 control-label">Phone</label>
+          <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+        <input name="phone" placeholder="Phone" class="form-control"  type="number">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Text input-->
+
+    <!--email-->
+       <div class="form-group">
+  <label class="col-md-4 control-label">E-Mail</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Password</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+  <input name="password" placeholder="Password" class="form-control"  type="password">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Confirm Password</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+  <input name="cpassword" placeholder="Confirm Password" class="form-control"  type="password">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+
+
+<!-- Text input-->
+
+<!--<div class="form-group">-->
+<!--  <label class="col-md-4 control-label">Contact No.</label>-->
+<!--    <div class="col-md-4 inputGroupContainer">-->
+<!--    <div class="input-group">-->
+<!--        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>-->
+<!--  <input name="contact_no" placeholder="(639)" class="form-control" type="text">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Select Basic -->
+
+<!-- Success message -->
+<!--<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>-->
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4"><br>
+    <center>
+    <button type="submit" class="btn btn-success" ><b>SUBMIT </b><span class="glyphicon glyphicon-send"></span></button>
+      </center>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+    </div><!-- /.container -->
+</body>
+</html>

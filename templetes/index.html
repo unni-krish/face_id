@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+{% block body %}
+
+     <div class="container-fluid">
+    <div class="row">
+     {% comment %} <h1 align="center" style="color:blue; top-margin:10px;">{{user.first_name}}  {{user.last_name}} </h1> {% endcomment %}
+    <div class="col-md-6">
+     <h3 style="color:#003366; position:absolute; top:10px; left:50%;"><u>Resume</u></h3>
+          {% comment %} <embed src="{{user.cv}}" type="application/pdf" width="100%" height="600px" /> {% endcomment %}
+   <img src="{{user.cv.url}}" width="650" height="700" style="margin-top:50px; margin-left:50px; border: 3px solid black;"><br><br><br>
+        
+         
+    </div>
+
+     <div class="col-md-6">
+          <div class="info">
+               <form class="form-control">
+               <h3 style="color:#003366; position:absolute; top:10px; left:50%;"><u>Info</u></h3>
+               First Name:<input class="form-control" type="text" placeholder="{{user.first_name}}" readonly>
+               Last Name:<input class="form-control" type="text" placeholder="{{user.last_name}}" readonly>
+              
+               Contact:<input class="form-control" type="text" placeholder="{{ user.phone }}" readonly>
+               Email:<input class="form-control" type="text" placeholder="{{ user.email }}" readonly>
+               Education:<input class="form-control" type="text" placeholder="{{ user.education }}" readonly>
+               Address:<textarea class="form-control" placeholder="{{user.address}}" readonly></textarea>
+           
+    <h6>{{details2.year}}</h6><br>
+               </form>
+    <div>
+
+    </div> 
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>  
+
+
+
+{% endblock %}
